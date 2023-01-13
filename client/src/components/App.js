@@ -2,6 +2,7 @@ import logo from '../logo.svg';
 import '../App.css';
 import { useState } from 'react';
 import Login from './LoginPage';
+import Signup from './Signup';
 import Landing from './LandingPage';
 import {Route, Routes} from 'react-router-dom'
 import Nav from './Nav';
@@ -16,6 +17,7 @@ function App() {
      <Routes>
       <Route path='/' element={<Landing/>} />
       <Route path='/login' element={<Login updateUser={setCurrentUser}/>} />
+      <Route path='/signup' element={<Signup />} />
      </Routes>
     </div>
   );
