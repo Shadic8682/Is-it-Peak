@@ -1,7 +1,7 @@
 import { React, useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 
-function Signup () {
+function Signup ({updateUser}) {
     const navigate = useNavigate();
     const location = useLocation();
 
@@ -34,7 +34,8 @@ function Signup () {
             .then(res => {
                 if (res.ok) {
                     res.json().then(user => {
-                        navigate(`/login`)
+                        updateUser(user)
+                        navigate(`/`)
                     })
                 } else {
                     res.json().then(json => setErrors(Object.entries(json.errors)))
@@ -63,4 +64,4 @@ function Signup () {
     )
 }
 
-export default Signup
+export default Signup;

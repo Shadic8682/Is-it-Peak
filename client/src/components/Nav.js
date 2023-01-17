@@ -24,7 +24,7 @@ function Nav ({currentUser, updateUser}) {
                     Login
                 </NavLink>
             </div>
-            <button onClick={handleLogout}>Log Out</button>
+            {currentUser ? <button onClick={handleLogout}>Log Out</button> : null}
         </nav>
     )
 }
