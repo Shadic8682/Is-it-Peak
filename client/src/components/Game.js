@@ -1,10 +1,12 @@
 import { useState } from 'react';
+import GamesList from './GamesList';
 
-function Game () {
-
+function Game ({games, setSelectedGame}) {
+    const gameList = games.map(game => <GamesList key={game.id} games={game} setSelectedGame={setSelectedGame}/>)
     return (
         <div>
             <h1>Games</h1>
+            {gameList}
         </div>
     )
 }

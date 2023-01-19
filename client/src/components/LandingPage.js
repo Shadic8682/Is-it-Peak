@@ -1,7 +1,9 @@
 import React, { useState } from "react";
+import LatestReviews from "./LatestReviews";
 
 function Landing ({latestReviews}) {
-    console.log(latestReviews)
+    const reviews = latestReviews.map(reviews => <LatestReviews reviews={reviews} />)
+
     return(
         <div>
             <h1>Landing Page</h1>
@@ -10,6 +12,7 @@ function Landing ({latestReviews}) {
             </h4>
             <br></br>
             <h3>Not convinced that you want to be part of the community yet? Here's some of our latest reviews!</h3>
+            {reviews}
         </div>
     )
 }

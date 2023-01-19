@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-function Review ({selectedGame}) {
+function Review ({currentUser, selectedGame, userReviews, updateUserReviews}) {
     const [formData, setFormData] = useState({
         critique: "",
         review_score: 0,
+        user_id: currentUser.id,
         game_id: selectedGame.id
     })
     
@@ -18,6 +19,13 @@ function Review ({selectedGame}) {
     function handleReview (e) {
         e.preventDefault()
         console.log(formData)
+        fetch("/new_review", {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify(formData)
+        }).then(res => {if(res.ok) {
+            res.json().then(data => updateUserReviews([...userReviews, data]))
+        }})
     }
 
     return (

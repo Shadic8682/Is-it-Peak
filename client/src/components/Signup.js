@@ -33,10 +33,21 @@ function Signup ({updateUser}) {
         })
             .then(res => {
                 if (res.ok) {
-                    res.json().then(user => {
-                        updateUser(user)
-                        navigate(`/`)
+                    fetch(`/login`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(newUser)
                     })
+                        .then(res => {
+                            if (res.ok) {
+                                res.json().then(user => {
+                                    updateUser(user)
+                                    navigate(`/`)
+                                })
+                            } else {
+                                res.json().then(json => setErrors(json.errors))
+                            }
+                        })
                 } else {
                     res.json().then(json => setErrors(Object.entries(json.errors)))
                 }

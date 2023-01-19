@@ -6,7 +6,10 @@ import Signup from './Signup';
 import Review from './Review';
 import Game from './Game';
 import Landing from './LandingPage';
+import UserEdit from './UserEdit';
 import {Route, Routes} from 'react-router-dom'
+import MyReviews from './MyReviews';
+
 import Nav from './Nav';
 
 function App() {
@@ -16,6 +19,8 @@ function App() {
   const [userReviews, setUserReviews] = useState([])
   const [gamesList, setGamesList] = useState([])
   const [latestReviews, setLatestReviews] = useState([])
+
+  console.log(currentUser)
  
 
   useEffect(() => {
@@ -28,6 +33,16 @@ function App() {
             });
         }
       })
+  }, [])
+
+  useEffect(() => {
+    fetch("my_reviews")
+    .then((res) => {
+      if (res.ok) {
+        res.json()
+        .then((reviews) => setUserReviews(reviews))
+      }
+    })
   }, [])
 
   useEffect(() => {
@@ -48,7 +63,9 @@ function App() {
         .then(revObj => setLatestReviews(revObj))
       }
     })
-  }, [])
+  }, [currentUser, userReviews])
+
+  console.log(userReviews)
 
 
   return (
@@ -58,8 +75,10 @@ function App() {
       <Route path='/' element={<Landing latestReviews={latestReviews}/>} />
       <Route path='/login' element={<Login updateUser={setCurrentUser} updateUserReviews={setUserReviews} /> } />
       <Route path='/signup' element={<Signup updateUser={setCurrentUser}/>} />
-      <Route path='/new_review' element={<Review selectedGame= {selectedGame}/>}/>
-      <Route path='/games_list' element={<Game games={gamesList}/>}/>
+      <Route path='update_user' element={<UserEdit updateUser={setCurrentUser}/>} />
+      <Route path='/new_review' element={<Review currentUser={currentUser} selectedGame= {selectedGame} updateUserReviews={setUserReviews} userReviews={userReviews}/>}/>
+      <Route path='/games_list' element={<Game games={gamesList} setSelectedGame={setSelectedGame}/>}/>
+      <Route path='/user_reviews' element={<MyReviews userReviews={userReviews}/>}/>
      </Routes>
     </div>
   );

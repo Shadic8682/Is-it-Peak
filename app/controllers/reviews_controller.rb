@@ -10,12 +10,17 @@ class ReviewsController < ApplicationController
     end
 
     def create
-        render json: Review.create!(:review_params)
+        new_review = Review.create!(review_params)
+        render json: new_review
+    end
+
+    def user_reviews
+        render json: current_user.reviews
     end
 
     private
 
     def review_params
-        params.permit(:review_score, :game_id, :user_id)
+        params.permit(:review_score, :game_id, :user_id, :critique)
     end
 end
