@@ -6,7 +6,7 @@ class ReviewsController < ApplicationController
     end
 
     def latest
-        render json: Review.last(3)
+        render json: Review.latest
     end
 
     def create
