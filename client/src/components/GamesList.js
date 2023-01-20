@@ -2,8 +2,6 @@ import { useNavigate } from "react-router-dom";
 
 function GamesList ({games, setSelectedGame}) {
     const navigate = useNavigate()
-    console.log(games)
-
 
     function handleClick (e) {
         setSelectedGame(games)

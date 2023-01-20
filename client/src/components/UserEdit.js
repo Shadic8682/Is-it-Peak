@@ -2,17 +2,16 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 
-function UserEdit ({updateUser}) {
-    const navigate = useNavigate
+function UserEdit ({updateUser, user}) {
+    const navigate = useNavigate()
 
     const [formData, setFormData] = useState({
-        name: "",
-        username: "",
-        email: "",
-        profile_image: "",
-        password: ""
+        name: user.name,
+        username: user.username,
+        email: user.email,
+        profile_image: user.profile_image,
+        password: user.password
       });
-    console.log(formData)
       const [errors, setErrors] = useState([]);
       const { name, username, email, password, profile_image } = formData;
     
@@ -33,14 +32,13 @@ function UserEdit ({updateUser}) {
           if (res.ok) {
             res.json().then((user) => {
                 updateUser(user)
-              navigate(`/dashboard`);
+              navigate(`/`);
             });
           } else {
             res.json().then((json) => setErrors(Object.entries(json.errors)));
           }
         });
       };
-      console.log(errors)
 
       const changeHandler = (e) => {
         const { name, value } = e.target;
@@ -48,11 +46,14 @@ function UserEdit ({updateUser}) {
       };
       const handleDeleteAccount = (e) => {
         if (window.confirm("Are you sure you want to delete your account? This is permanent") === true) {
-          fetch("destroy-user", {
+          fetch("destroy_user", {
               method: 'DELETE'
+          }).then(res => {
+            updateUser(false)
+            navigate("/login")
           })
-          navigate("/login");
-          window.location.reload(false);
+          ;
+          // window.location.reload(false);
         }
       }
     
@@ -97,7 +98,7 @@ function UserEdit ({updateUser}) {
                     <br></br>        
     
             <input className="input-field"
-              placeholder="Update password"
+              placeholder="Verify/update password"
               type="text"
               name="password"
               value={password}

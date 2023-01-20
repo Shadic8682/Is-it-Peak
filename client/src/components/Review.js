@@ -11,8 +11,7 @@ function Review ({currentUser, selectedGame, userReviews, updateUserReviews}) {
     
     const {critique, review_score, game_id} = formData
 
-    function handleChange (e) {
-        const {name, value} = e.target
+    function handleChange ({ target:{ name, value } }) {
         setFormData({...formData, [name]: value})
     }
 

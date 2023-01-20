@@ -19,8 +19,6 @@ function App() {
   const [userReviews, setUserReviews] = useState([])
   const [gamesList, setGamesList] = useState([])
   const [latestReviews, setLatestReviews] = useState([])
-
-  console.log(currentUser)
  
 
   useEffect(() => {
@@ -65,8 +63,6 @@ function App() {
     })
   }, [currentUser, userReviews])
 
-  console.log(userReviews)
-
 
   return (
     <div className="App">
@@ -75,10 +71,10 @@ function App() {
       <Route path='/' element={<Landing latestReviews={latestReviews}/>} />
       <Route path='/login' element={<Login updateUser={setCurrentUser} updateUserReviews={setUserReviews} /> } />
       <Route path='/signup' element={<Signup updateUser={setCurrentUser}/>} />
-      <Route path='update_user' element={<UserEdit updateUser={setCurrentUser}/>} />
+      <Route path='update_user' element={<UserEdit updateUser={setCurrentUser} user={currentUser}/>} />
       <Route path='/new_review' element={<Review currentUser={currentUser} selectedGame= {selectedGame} updateUserReviews={setUserReviews} userReviews={userReviews}/>}/>
-      <Route path='/games_list' element={<Game games={gamesList} setSelectedGame={setSelectedGame}/>}/>
-      <Route path='/user_reviews' element={<MyReviews userReviews={userReviews}/>}/>
+      <Route path='/games_list' element={<Game games={gamesList} setSelectedGame={setSelectedGame} />}/>
+      <Route path='/user_reviews' element={<MyReviews userReviews={userReviews} user={currentUser}/>}/>
      </Routes>
     </div>
   );

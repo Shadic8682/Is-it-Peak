@@ -62,7 +62,7 @@ function Signup ({updateUser}) {
     return (
         <div>
             <h1>{location.pathname}</h1>
-            <h2>Create your ResuME! Account</h2>
+            <h2>Create your Account</h2>
             <form onSubmit={handleSubmit}>
                 <input placeholder="Name" type="text" name='name' value={name} onChange={changeHandler} />
                 <input placeholder="Username" type="text" name='username' value={username} onChange={changeHandler} />

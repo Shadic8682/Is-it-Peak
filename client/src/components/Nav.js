@@ -3,7 +3,6 @@ import { NavLink, useNavigate } from "react-router-dom";
 
 function Nav ({currentUser, updateUser}) {
     const navigate = useNavigate();
-    console.log(updateUser)
     
     function handleLogout() {
         fetch(`/logout`, {
