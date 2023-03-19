@@ -6,5 +6,7 @@ class Review < ApplicationRecord
     self.last(3)
   end
 
+  validates :game, uniqueness: {scope: :user,
+message: "cannot review same game twice"}
 
 end

@@ -1,5 +1,5 @@
 import logo from '../logo.svg';
-import '../App.css';
+import '../index.css';
 import { useState, useEffect } from 'react';
 import Login from './LoginPage';
 import Signup from './Signup';
@@ -65,10 +65,10 @@ function App() {
 
 
   return (
-    <div className="App">
+    <div className="App bg-gradient-to-br from-blue-500 to-red-900 via-purple-600 animate-gradient-x h-screen">
       <Nav currentUser={currentUser} updateUser={setCurrentUser}/>
      <Routes>
-      <Route path='/' element={<Landing latestReviews={latestReviews}/>} />
+      <Route path='/' element={<Landing user={currentUser} latestReviews={latestReviews}/>} />
       <Route path='/login' element={<Login updateUser={setCurrentUser} updateUserReviews={setUserReviews} /> } />
       <Route path='/signup' element={<Signup updateUser={setCurrentUser}/>} />
       <Route path='update_user' element={<UserEdit updateUser={setCurrentUser} user={currentUser}/>} />

@@ -60,16 +60,15 @@ function Signup ({updateUser}) {
     }
 
     return (
-        <div>
-            <h1>{location.pathname}</h1>
-            <h2>Create your Account</h2>
-            <form onSubmit={handleSubmit}>
-                <input placeholder="Name" type="text" name='name' value={name} onChange={changeHandler} />
-                <input placeholder="Username" type="text" name='username' value={username} onChange={changeHandler} />
-                <input placeholder="Email" type="text" name='email' value={email} onChange={changeHandler} />
-                <input placeholder="Password" type="text" name='password' value={password} onChange={changeHandler} />
-                <input placeholder="Confirm Password" type="text" name='confirm_password' value={confirm_password} onChange={changeHandler} />
-                <button type="submit">Signup</button>
+        <div className='w-full max-w-xs'>
+            <h2 className='text-xl'>Create your Account</h2>
+            <form onSubmit={handleSubmit} className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+                <input placeholder="Name" className='shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline' type="text" name='name' value={name} onChange={changeHandler} />
+                <input placeholder="Username" className='shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline' type="text" name='username' value={username} onChange={changeHandler} />
+                <input placeholder="Email" className='shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline' type="text" name='email' value={email} onChange={changeHandler} />
+                <input placeholder="Password" className='shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline' type="text" name='password' value={password} onChange={changeHandler} />
+                <input placeholder="Confirm Password" className='shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline' type="text" name='confirm_password' value={confirm_password} onChange={changeHandler} />
+                <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline' type="submit">Signup</button>
             </form>
         </div>
     )

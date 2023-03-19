@@ -1,5 +1,5 @@
 class SessionsController < ApplicationController
-    skip_before_action :authorized_user, only: [:create]
+    skip_before_action :authorized_user, only: [:create, :index]
   
     def create
       user = User.find_by(username: params[:username])
@@ -14,6 +14,10 @@ class SessionsController < ApplicationController
                },
                status: :unauthorized
       end
+    end
+
+    def show
+      render json: current_user, status: :ok
     end
   
     def delete

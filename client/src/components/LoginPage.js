@@ -45,28 +45,29 @@ function Login ({updateUser}) {
     }
 
     return (
-        <div id='login-container'>
-            <h1>{location.pathname}</h1>
-            <form onSubmit={submitHandler}>
-                <label>
+        <div className='flex justify-content-center'>
+        <div id='login-container' className='w-full max-w-xs'>
+            <h1 className='text-2xl'>Please Log In</h1>
+            <form className='bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4' onSubmit={submitHandler}>
+                <label className='block text-gray-700 text-sm font-bold mb-2'>
                     Username
                 </label>
-                <input type='text' placeholder="Username" name='username' value={username} onChange={changeHandler} />
+                <input type='text' className='shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline' placeholder="Username" name='username' value={username} onChange={changeHandler} />
                 <br /> <br />
-                <label>
+                <label className='block text-gray-700 text-sm font-bold mb-2'>
                     Password
                 </label>
             
-                <input type='password' placeholder="Password" name='password' value={password} onChange={changeHandler} />
+                <input type='password' className='shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline' placeholder="Password" name='password' value={password} onChange={changeHandler} />
                 <br />
 
-                <input type='submit' value='Log In' />
+                <input type='submit' className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline' value='Log In' />
             </form>
             {errors ? <div>{errors}</div> : null}
             <br />
-            <h3>or</h3>
             <br />
-            <button onClick={clickHandler}>Don't have an account? Click Me!</button>
+            <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline' onClick={clickHandler}>Don't have an account? Click Me!</button>
+        </div>
         </div>
     )
 }

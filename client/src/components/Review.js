@@ -1,7 +1,8 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 
 function Review ({currentUser, selectedGame, userReviews, updateUserReviews}) {
+    const navigate = useNavigate()
     const [formData, setFormData] = useState({
         critique: "",
         review_score: 0,
@@ -24,16 +25,21 @@ function Review ({currentUser, selectedGame, userReviews, updateUserReviews}) {
             body: JSON.stringify(formData)
         }).then(res => {if(res.ok) {
             res.json().then(data => updateUserReviews([...userReviews, data]))
+        }else {
+            navigate("/games_list")
         }})
     }
 
     return (
         <div>
-            <form onSubmit={handleReview}>
-                <input type="text" name="critique" value={critique} placeholder="What are your thoughts?" onChange={handleChange} />
-                <input type="number" name="review_score" value={review_score} min={0} max={10} onChange={handleChange}/>
-                <button type="submit" name="submit">Click Me!</button>
+        <h1 className="text-2xl">Review for {selectedGame.name}</h1>
+        <div className="w-full max-w-xs">
+            <form onSubmit={handleReview} className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+                <input type="text" className='shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline' name="critique" value={critique} placeholder="What are your thoughts?" onChange={handleChange} />
+                <input type="number" className='shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline' name="review_score" value={review_score} min={0} max={10} onChange={handleChange}/>
+                <button type="submit" name="submit">Submit Review!</button>
             </form>
+        </div>
         </div>
     )
 }
